@@ -6,34 +6,18 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ContactDetails {
 
-    @Column
-    private String street;
-
-    @Column
-    private Integer houseNumber;
-
-    @Column
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column
+    @Column(name = "PHONE")
     private String phone;
 
+    @Column(name = "CITY", nullable=false)
+    private String city;
 
-    public String getStreet() {
-        return street;
-    }
+    @Column(name = "COUNTRY", nullable=false)
+    private String country;
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public Integer getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(Integer houseNumber) {
-        this.houseNumber = houseNumber;
-    }
 
     public String getEmail() {
         return email;
@@ -49,5 +33,21 @@ public class ContactDetails {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
