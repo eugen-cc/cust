@@ -1,5 +1,0 @@
-customer/model/Customer.class
-customer/model/ContactDetails.class
-customer/model/Note.class
-customer/model/converter/StatusConverter.class
-customer/model/Customer$Status.class
