@@ -1,4 +1,4 @@
-package cc.eugen.ph.customer.model;
+package cc.eugen.ph.customer.model.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,8 +19,8 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @SequenceGenerator(name = "mySeqGen", sequenceName = "custSeq", initialValue = 101010, allocationSize = 11)
-    @GeneratedValue(generator = "mySeqGen")
+    @SequenceGenerator(name = "CustSeqGen", sequenceName = "CustSeq", initialValue = 101010, allocationSize = 11)
+    @GeneratedValue(generator = "CustSeqGen")
     private Long id;
 
     @Column(nullable = false)

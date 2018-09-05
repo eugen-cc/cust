@@ -1,6 +1,6 @@
-package cc.eugen.ph.customer.model.converter;
+package cc.eugen.ph.customer.model.entity.converter;
 
-import cc.eugen.ph.customer.model.Customer;
+import cc.eugen.ph.customer.model.entity.Customer;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

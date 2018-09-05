@@ -1,4 +1,4 @@
-package cc.eugen.ph.customer.model;
+package cc.eugen.ph.customer.model.entity;
 
 
 import javax.persistence.Column;
@@ -11,8 +11,8 @@ import javax.persistence.SequenceGenerator;
 public class Note {
 
     @Id
-    @SequenceGenerator(name = "mySeqGen", sequenceName = "noteSeq", initialValue = 5555, allocationSize = 13)
-    @GeneratedValue(generator = "mySeqGen")
+    @SequenceGenerator(name = "NoteSeqGen", sequenceName = "NoteSeq", initialValue = 5555, allocationSize = 5)
+    @GeneratedValue(generator = "NoteSeqGen")
     private Long id;
 
     @Column

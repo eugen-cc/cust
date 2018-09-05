@@ -1,9 +1,9 @@
 package cc.eugen.ph.customer.service;
 
-import cc.eugen.ph.customer.model.ContactDetails;
-import cc.eugen.ph.customer.model.Customer;
 import cc.eugen.ph.customer.model.CustomerRepo;
-import cc.eugen.ph.customer.model.Note;
+import cc.eugen.ph.customer.model.entity.ContactDetails;
+import cc.eugen.ph.customer.model.entity.Customer;
+import cc.eugen.ph.customer.model.entity.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;

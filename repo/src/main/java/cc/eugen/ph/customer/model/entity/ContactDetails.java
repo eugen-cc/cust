@@ -1,4 +1,4 @@
-package cc.eugen.ph.customer.model;
+package cc.eugen.ph.customer.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
