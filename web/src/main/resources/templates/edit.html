@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Customer</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <h1>Details</h1>
+
+    <form class="form-group" action="/customer/update" th:action="@{/customer/update}" th:method="put">
+        <input th:type="hidden" name="id" th:field="${customer.id}" />
+
+        <div class="form-group">
+            <label for="title">Customer ID</label>
+            <input type="text" th:readonly="true" class="form-control" id="title" th:field="${customer.id}" />
+        </div>
+         <div class="form-group">
+            <label for="title">Firstname</label>
+            <input type="text" class="form-control" id="firstname" th:field="${customer.firstName}" />
+        </div>
+         <div class="form-group">
+            <label for="title">Lastname</label>
+            <input type="text" class="form-control" id="lastname" th:field="${customer.lastName}" />
+        </div>
+        <div class="form-group">
+            <label for="title">E-Mail</label>
+            <input type="text" class="form-control" id="email" th:field="${customer.details.email}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Phone #</label>
+            <input type="text" class="form-control" id="phone" th:field="${customer.details.phone}" />
+        </div>
+        <div class="form-group">
+            <label for="title">City</label>
+            <input type="text" class="form-control" id="city" th:field="${customer.details.city}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Country</label>
+            <input type="text" class="form-control" id="country" th:field="${customer.details.country}" />
+        </div>
+         <!--div class="form-group">
+            <label for="title">Created</label>
+            <input type="text" th:readonly="true" class="form-control" id="created" th:field="${customer.created}" />
+        </div-->
+         <!--div-- class="form-group">
+             <label for="status">Status</label>
+             <select id="status">
+                 <option th:each="Status : ${T(cc.eugen.ph.customer.model.entity.Customer.Status).values()}"
+                         th:value="${customer.get().status.value}"
+                         th:utext="${customer.get.status}"/>
+             </select>
+        </div
+            <div class="form-group">
+                <th:block th:each="note : ${customer.notes}">
+                <label for="content">Note</label>
+                <textarea class="form-control" id="content" th:field="${note.description}"></textarea>
+                </th:block>
+            </div-->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="#" th:href="@{/customer/all}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+
+</div>
+
+</body>
+</html>
