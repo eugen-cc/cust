@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = {"cc.eugen.ph.customer", "cc.eugen.ph.customer.service"})
 @EntityScan("cc.eugen.ph.customer.model")
 @EnableJpaRepositories("cc.eugen.ph.customer.model")
-@PropertySource(value = {"application.properties", "webapp.properties"})
+@PropertySource(value = {"application.properties"})
 public class CustomerApplication {
 
 	public static void main(String[] args) {

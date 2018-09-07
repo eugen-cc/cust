@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
 
-        <h2>Details</h2>
+        <h2 th:align="center">Customer Details</h2>
 
         <form class="form-group" action="/customer/update" th:action="@{/customer/update}" th:method="put">
             <input th:type="hidden" name="id" th:field="${customer.id}"/>
@@ -67,7 +67,7 @@
         </form>
     </div>
     <div class="row" th:if="${customer.id != null}">
-        <h2>Notes</h2>
+        <h2>Customer Notes</h2>
 
         <form class="form-group" action="/note/add" th:action="@{/note/add}" th:method="post">
             <input th:type="hidden" name="id" th:field="${customer.id}"/>
@@ -76,7 +76,7 @@
                 <th:block th:each="note : ${customer.notes}">
                     <textarea class="form-control" id="content" th:text="${note.description}"
                               th:readonly="true"></textarea>
-                    <a href="#" th:href="@{/note/__${note.id}__}" class="btn btn-link" role="button">Edit</a>
+                    <a href="#" th:href="@{/note/__${note.id}__}" class="btn btn-info" role="button">Edit</a>
                 </th:block>
             </div>
             <button th:method="post" type="submit" class="btn btn-success">Add note</button>

@@ -1,7 +1,5 @@
 package cc.eugen.ph.customer.service.controller;
 
-import java.util.Optional;
-
 import cc.eugen.ph.customer.model.CustomerRepo;
 import cc.eugen.ph.customer.model.NoteRepo;
 import cc.eugen.ph.customer.model.entity.Customer;
@@ -9,25 +7,28 @@ import cc.eugen.ph.customer.model.entity.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CustomerController {
 
-    public static final String CUSTOMER_OVERVIEW = "list";
-    public static final String EDIT_CUSTOMER = "edit";
-    public static final String EDIT_NOTE = "note";
+    private static final String CUSTOMER_OVERVIEW = "list";
+    private static final String EDIT_CUSTOMER = "edit";
+    private static final String EDIT_NOTE = "note";
 
     @Autowired
     private CustomerRepo customerRepo;
 
     @Autowired
     private NoteRepo noteRepo;
+
+    @GetMapping("/")
+    public String start(){
+        return "redirect:/customer/all";
+    }
 
     @GetMapping(value = "/customer/all")
     public String customerList(Model model) {
@@ -37,8 +38,7 @@ public class CustomerController {
 
     @GetMapping(value = "/customer/{id}")
     public String findCustomer(Model model, @PathVariable(name = "id") Long id) {
-        Optional<Customer> customer = customerRepo.findById(id);
-        model.addAttribute("customer", customer.orElse(new Customer()));
+        model.addAttribute("customer", customerRepo.findById(id).orElse(new Customer()));
         return EDIT_CUSTOMER;
     }
 
@@ -50,16 +50,13 @@ public class CustomerController {
 
     @GetMapping(value = "/note/{id}")
     public String findCustomerNote(Model model, @PathVariable(name = "id") Long id) {
-
-        Optional<Note> note = noteRepo.findById(id);
-        model.addAttribute("note", note.orElse(new Note()));
+        model.addAttribute("note", noteRepo.findById(id).orElse(new Note()));
         return EDIT_NOTE;
     }
 
     @PutMapping(value="/note/update")
     public String updateNote(Model model, Note note) {
         Note updated = noteRepo.save(note);
-        //updated.setCustomer(customerRepo.fi.getCustomer());
         model.addAttribute("customer", updated.getCustomer());
         return EDIT_CUSTOMER;
     }

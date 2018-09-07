@@ -14,12 +14,12 @@
 
 <div class="container">
 
-    <h1>Customer Overview</h1>
+    <h2 th:align="center">Customer Overview</h2>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Firstname</th>
             <th>Lastname </th>
             <th>Status</th>
@@ -33,7 +33,7 @@
             <td th:text="${customer.lastName}"></td>
             <td th:text="${customer.status.getValue()}"></td>
             <td>
-                <a href="/customer/1" th:href="@{/customer/__${customer.id}__}">Details</a>
+                <a href="/customer/1" th:href="@{/customer/__${customer.id}__}" role="button"  class="btn btn-info">Details</a>
             </td>
         </tr>
         </tbody>
