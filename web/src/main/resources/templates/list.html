@@ -16,10 +16,6 @@
 
     <h1>Customer Overview</h1>
 
-    <p>
-        <a href="/customer" th:href="@{/customer}">Create</a>
-    </p>
-
     <table class="table">
         <thead>
         <tr>
@@ -42,6 +38,11 @@
         </tr>
         </tbody>
     </table>
+
+    <form class="form-group" action="/customer/add" th:action="@{/customer/add}" th:method="post">
+
+        <button th:method="post" type="submit" class="btn btn-success">Add new customer</button>
+    </form>
 </div>
 </body>
 </html>

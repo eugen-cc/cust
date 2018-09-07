@@ -2,74 +2,87 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Customer</title>
 
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
+    <div class="row">
 
-    <h1>Details</h1>
+        <h2>Details</h2>
 
-    <form class="form-group" action="/customer/update" th:action="@{/customer/update}" th:method="put">
-        <input th:type="hidden" name="id" th:field="${customer.id}" />
+        <form class="form-group" action="/customer/update" th:action="@{/customer/update}" th:method="put">
+            <input th:type="hidden" name="id" th:field="${customer.id}"/>
 
-        <div class="form-group">
-            <label for="title">Customer ID</label>
-            <input type="text" th:readonly="true" class="form-control" id="title" th:field="${customer.id}" />
-        </div>
-         <div class="form-group">
-            <label for="title">Firstname</label>
-            <input type="text" class="form-control" id="firstname" th:field="${customer.firstName}" />
-        </div>
-         <div class="form-group">
-            <label for="title">Lastname</label>
-            <input type="text" class="form-control" id="lastname" th:field="${customer.lastName}" />
-        </div>
-        <div class="form-group">
-            <label for="title">E-Mail</label>
-            <input type="text" class="form-control" id="email" th:field="${customer.details.email}" />
-        </div>
-        <div class="form-group">
-            <label for="title">Phone #</label>
-            <input type="text" class="form-control" id="phone" th:field="${customer.details.phone}" />
-        </div>
-        <div class="form-group">
-            <label for="title">City</label>
-            <input type="text" class="form-control" id="city" th:field="${customer.details.city}" />
-        </div>
-        <div class="form-group">
-            <label for="title">Country</label>
-            <input type="text" class="form-control" id="country" th:field="${customer.details.country}" />
-        </div>
+            <div class="form-group">
+                <label for="title">Customer ID</label>
+                <input type="text" th:readonly="true" class="form-control" id="title" th:field="${customer.id}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">Firstname</label>
+                <input type="text" class="form-control" id="firstname" th:field="${customer.firstName}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">Lastname</label>
+                <input type="text" class="form-control" id="lastname" th:field="${customer.lastName}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">E-Mail</label>
+                <input type="text" class="form-control" id="email" th:field="${customer.details.email}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">Phone #</label>
+                <input type="text" class="form-control" id="phone" th:field="${customer.details.phone}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">City</label>
+                <input type="text" class="form-control" id="city" th:field="${customer.details.city}"/>
+            </div>
+            <div class="form-group">
+                <label for="title">Country</label>
+                <input type="text" class="form-control" id="country" th:field="${customer.details.country}"/>
+            </div>
 
-         <div class="form-group">
-            <label for="title">Created</label>
-            <input type="text" th:readonly="true" class="form-control" id="created" th:field="${customer.created}" />
-        </div>
+            <div class="form-group">
+                <label for="title">Created</label>
+                <input type="text" th:readonly="true" class="form-control" id="created" th:field="${customer.created}"/>
+            </div>
 
-        <div class="form-group">
-            <label for="status">Status</label>
-            <select id="status" th:field="${customer.status}">
-                <option th:each="status : ${T(cc.eugen.ph.customer.model.entity.Customer.Status).values()}"
-                        th:value="${status}"
-                        th:utext="${status.value}" />
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="content">Notes</label>
-            <th:block th:each="note : ${customer.notes}">
-                <textarea class="form-control" id="content" th:text="${note.description}" th:readonly="true"></textarea>
-            </th:block>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="#" th:href="@{/customer/all}" class="btn btn-danger" role="button">Cancel</a>
-    </form>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" th:field="${customer.status}">
+                    <option th:each="status : ${T(cc.eugen.ph.customer.model.entity.Customer.Status).values()}"
+                            th:value="${status}"
+                            th:utext="${status.value}"/>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="#" th:href="@{/customer/all}" class="btn btn-danger" role="button">Back to Overview</a>
+        </form>
+    </div>
+    <div class="row" th:if="${customer.id != null}">
+        <h2>Notes</h2>
 
+        <form class="form-group" action="/note/add" th:action="@{/note/add}" th:method="post">
+            <input th:type="hidden" name="id" th:field="${customer.id}"/>
+            <div class="form-group">
+                <label for="content" th:if="${not #lists.isEmpty(customer.notes)}">Notes</label>
+                <th:block th:each="note : ${customer.notes}">
+                    <textarea class="form-control" id="content" th:text="${note.description}"
+                              th:readonly="true"></textarea>
+                    <a href="#" th:href="@{/note/__${note.id}__}" class="btn btn-link" role="button">Edit</a>
+                </th:block>
+            </div>
+            <button th:method="post" type="submit" class="btn btn-success">Add note</button>
+        </form>
+
+    </div>
 </div>
 
 </body>

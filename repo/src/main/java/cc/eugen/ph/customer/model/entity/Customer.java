@@ -1,11 +1,13 @@
 package cc.eugen.ph.customer.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -38,13 +40,13 @@ public class Customer {
     private ContactDetails details;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @DateTimeFormat(pattern="dd-MMM-YYYY hh:mm:ss")
     private Date created;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Note> notes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Note> notes = new ArrayList<>();
 
 
     public enum Status {
