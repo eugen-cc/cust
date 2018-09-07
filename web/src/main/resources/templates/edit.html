@@ -46,24 +46,26 @@
             <label for="title">Country</label>
             <input type="text" class="form-control" id="country" th:field="${customer.details.country}" />
         </div>
-         <!--div class="form-group">
+
+         <div class="form-group">
             <label for="title">Created</label>
             <input type="text" th:readonly="true" class="form-control" id="created" th:field="${customer.created}" />
-        </div-->
-         <!--div-- class="form-group">
-             <label for="status">Status</label>
-             <select id="status">
-                 <option th:each="Status : ${T(cc.eugen.ph.customer.model.entity.Customer.Status).values()}"
-                         th:value="${customer.get().status.value}"
-                         th:utext="${customer.get.status}"/>
-             </select>
-        </div
-            <div class="form-group">
-                <th:block th:each="note : ${customer.notes}">
-                <label for="content">Note</label>
-                <textarea class="form-control" id="content" th:field="${note.description}"></textarea>
-                </th:block>
-            </div-->
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" th:field="${customer.status}">
+                <option th:each="status : ${T(cc.eugen.ph.customer.model.entity.Customer.Status).values()}"
+                        th:value="${status}"
+                        th:utext="${status.value}" />
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="content">Notes</label>
+            <th:block th:each="note : ${customer.notes}">
+                <textarea class="form-control" id="content" th:text="${note.description}" th:readonly="true"></textarea>
+            </th:block>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="#" th:href="@{/customer/all}" class="btn btn-danger" role="button">Cancel</a>
     </form>

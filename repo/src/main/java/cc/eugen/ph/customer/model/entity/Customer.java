@@ -1,7 +1,7 @@
 package cc.eugen.ph.customer.model.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
-
+import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -12,8 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.util.Date;
-import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Customer {
@@ -39,6 +40,7 @@ public class Customer {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
+    @DateTimeFormat(pattern="dd-MMM-YYYY hh:mm:ss")
     private Date created;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

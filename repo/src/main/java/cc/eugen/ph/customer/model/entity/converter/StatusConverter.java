@@ -1,9 +1,9 @@
 package cc.eugen.ph.customer.model.entity.converter;
 
-import cc.eugen.ph.customer.model.entity.Customer;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+
+import cc.eugen.ph.customer.model.entity.Customer;
 
 @Converter(autoApply = true)
 public class StatusConverter implements AttributeConverter<Customer.Status,String> {
