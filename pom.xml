@@ -5,7 +5,7 @@
 
     <groupId>cc.eugen.ph</groupId>
     <artifactId>customer</artifactId>
-    <version>0.0.2</version>
+    <version>1.0.0</version>
     <modules>
         <module>repo</module>
         <module>web</module>
@@ -43,7 +43,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>

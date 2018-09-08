@@ -1,23 +1,25 @@
 package cc.eugen.ph.customer.model.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-
+/**
+ * This class represents the customer entity.
+ */
 @Entity
 public class Customer {
 
@@ -33,19 +35,19 @@ public class Customer {
     @Column(name = "FIRSTNAME", nullable = false)
     private String firstName;
 
-    @Column(name="LASTNAME", nullable = false)
+    @Column(name = "LASTNAME", nullable = false)
     private String lastName;
 
     @Embedded
     private ContactDetails details;
 
     @CreationTimestamp
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    @DateTimeFormat(pattern="dd-MMM-YYYY hh:mm:ss")
+    @DateTimeFormat(pattern = "dd-MMM-YYYY hh:mm:ss")
     private Date created;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Note> notes = new ArrayList<>();
 
 
@@ -63,12 +65,15 @@ public class Customer {
         }
 
         public static Status fromValue(String value) {
-            switch(value) {
-                case "prospective" : return PROSPECTIVE;
-                case "current":return CURRENT;
-                case "non-active": return NON_ACTIVE;
+            switch (value) {
+                case "prospective":
+                    return PROSPECTIVE;
+                case "current":
+                    return CURRENT;
+                case "non-active":
+                    return NON_ACTIVE;
                 default:
-                    throw new RuntimeException("Invalid value for Status : "+ value);
+                    throw new RuntimeException("Invalid value for Status : " + value);
             }
         }
     }

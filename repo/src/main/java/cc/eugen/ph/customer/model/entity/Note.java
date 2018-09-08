@@ -3,13 +3,15 @@ package cc.eugen.ph.customer.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+ *  This class represents a Note for a customer
+ */
 @Entity
 public class Note {
 

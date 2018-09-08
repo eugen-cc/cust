@@ -25,12 +25,15 @@ public class CustomerController {
     @Autowired
     private NoteRepo noteRepo;
 
+    /**
+     * a redirect to the correct entry point
+     */
     @GetMapping("/")
-    public String start(){
-        return "redirect:/customer/all";
+    public String start() {
+        return "redirect:/customer/list";
     }
 
-    @GetMapping(value = "/customer/all")
+    @GetMapping(value = "/customer/list")
     public String customerList(Model model) {
         model.addAttribute("customerList", customerRepo.findAll());
         return CUSTOMER_OVERVIEW;
@@ -54,7 +57,7 @@ public class CustomerController {
         return EDIT_NOTE;
     }
 
-    @PutMapping(value="/note/update")
+    @PutMapping(value = "/note/update")
     public String updateNote(Model model, Note note) {
         Note updated = noteRepo.save(note);
         model.addAttribute("customer", updated.getCustomer());
