@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Customer Overview</title>
 
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
 
     <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
@@ -16,33 +17,56 @@
 
     <h2 th:align="center">Customer Overview</h2>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th><a th:href="@{/customer/list(sort=firstname)}" class="btn-link">Firstname</a></th>
-            <th><a th:href="@{/customer/list(sort=lastname)}" class="btn-link">Lastname</a></th>
-            <th><a th:href="@{/customer/list(sort=status)}" class="btn-link">Status</a></th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="customer : ${customerList}">
-            <td th:text="${customer.id}"></td>
-            <td th:text="${customer.firstName}"></td>
-            <td th:text="${customer.lastName}"></td>
-            <td th:text="${customer.status.getValue()}"></td>
-            <td>
-                <a href="/customer/1" th:href="@{/customer/__${customer.id}__}" role="button"  class="btn btn-info">Details</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 
-    <form class="form-group" action="/customer/add" th:action="@{/customer/add}" th:method="post">
+    <div class="row">
 
-        <button th:method="post" type="submit" class="btn btn-success">Add new customer</button>
-    </form>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th><a th:href="@{/customer/list(sort=firstname)}" class="btn-link">Firstname</a></th>
+                <th><a th:href="@{/customer/list(sort=lastname)}" class="btn-link">Lastname</a></th>
+                <th><a th:href="@{/customer/list(sort=status)}" class="btn-link">Status</a></th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customerList}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.status.getValue()}"></td>
+                <td>
+                    <a href="/customer/1" th:href="@{/customer/__${customer.id}__}" role="button" class="btn btn-info">Details</a>
+                </td>
+            </tr>
+            <tr>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>
+                    <form class="form-group" action="/customer/add" th:action="@{/customer/add}" th:method="post">
+                        <button th:method="post" type="submit" class="btn btn-danger">Create</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <form class="form-group" action="#" th:action="@{/customer/find}" th:object="${search}" role="search"
+              th:method="post">
+            <label for="search">Search:</label>
+            <input type="text" name="search" id="search"/>
+            <button th:method="get" type="submit" class="btn btn-success">Go</button>
+            <a href="/customer/list" th:href="@{/customer/list}" role="button" class="btn btn-warning">Reset</a>
+        </form>
+    </div>
+</div>
+</div>
+
+
 </div>
 </body>
 </html>

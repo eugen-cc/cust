@@ -43,7 +43,7 @@ public class Customer {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
+    @Column(updatable = false)
     @DateTimeFormat(pattern = "dd-MMM-YYYY hh:mm:ss")
     private Date created;
 

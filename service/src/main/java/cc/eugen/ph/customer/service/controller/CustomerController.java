@@ -62,6 +62,14 @@ public class CustomerController {
         return CUSTOMER_OVERVIEW;
     }
 
+    @PostMapping(value = "/customer/find")
+    public String findCustomers(Model model, @RequestParam String search) {
+        if (search != null) {
+            model.addAttribute("customerList", customerRepo.findAllByQuery(search));
+        }
+        return CUSTOMER_OVERVIEW;
+    }
+
     @GetMapping(value = "/customer/{id}")
     public String findCustomer(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("customer", customerRepo.findById(id).orElse(new Customer()));
