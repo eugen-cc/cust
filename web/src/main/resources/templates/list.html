@@ -20,9 +20,9 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname </th>
-            <th>Status</th>
+            <th><a th:href="@{/customer/list(sort=firstname)}" class="btn-link">Firstname</a></th>
+            <th><a th:href="@{/customer/list(sort=lastname)}" class="btn-link">Lastname</a></th>
+            <th><a th:href="@{/customer/list(sort=status)}" class="btn-link">Status</a></th>
             <th>Actions</th>
         </tr>
         </thead>

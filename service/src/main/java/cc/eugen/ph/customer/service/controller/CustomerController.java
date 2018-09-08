@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class CustomerController {
@@ -34,8 +37,28 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customer/list")
-    public String customerList(Model model) {
-        model.addAttribute("customerList", customerRepo.findAll());
+    public String customerList(Model model, @RequestParam(value = "sort", required = false) String sortBy) {
+        List<Customer> customerList;
+        if (sortBy != null) {
+            switch (sortBy.toUpperCase()) {
+                case "FIRSTNAME":
+                    customerList = customerRepo.findAllByOrderByFirstNameAsc();
+                    break;
+                case "LASTNAME":
+                    customerList = customerRepo.findAllByOrderByLastNameAsc();
+                    break;
+                case "STATUS":
+                    customerList = customerRepo.findAllByOrderByStatusAsc();
+                    break;
+                default:
+                    customerList = customerRepo.findAllByOrderByIdAsc();
+                    break;
+            }
+        } else {
+            customerList = customerRepo.findAll();
+        }
+
+        model.addAttribute("customerList", customerList);
         return CUSTOMER_OVERVIEW;
     }
 
