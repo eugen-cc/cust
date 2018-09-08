@@ -1,4 +1,4 @@
--- initial db prefil
+-- initial db prefill
 
 insert into Customer(Id, Firstname, Lastname, Email, Phone, Country, City, Status, Created) values
 (101000, 'Franz', 'Müller', 'franz@yahoo.de', '+49931231754','Germany', 'Würzburg', 'non-active', CURRENT_TIMESTAMP()),

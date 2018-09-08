@@ -1,12 +1,12 @@
 ### Simple Customer Management
 
-This demo is based on a spring boot application. 
+This demo is based on a Spring Boot application. 
 
 Used frameworks:
 * Spring Boot
 * Spring MVC
 * Spring Data
-* Thymleaf
+* Thymeleaf
 * Apache Maven
 ##
 ##### BUILD and RUN
@@ -22,15 +22,16 @@ Check
 [http://localhost:8080](http://localhost:8080)  
 ##
 ##### DATABASE
-This Demo is using a *H2 in-memory database*!  
+This Demo is using a *H2 in-memory database* !  
 To view the data visit :  [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
 Login with credentials configured in **application.properties**
 
-JDBC URL: 
-**jdbc:h2:mem:customerdb**  
-User: 
-**dba**  
+| JDBC URL | USER | PASS |
+| ------ | ------ | -----|
+| jdbc:h2:mem:customerdb | dba | -|
+
+
 ##
 ##### NOT IN SCOPE
 Topics like Security and Validation are out of scope in this demo.
